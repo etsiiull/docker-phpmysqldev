@@ -13,8 +13,11 @@ try:
     print "lineas", lines
     if lines == 0:
         print "Creando maquina virtual"
-        print "docker-machine","create","--driver","virtualbox","default"
-        output = subprocess.check_output(["docker-machine","create","--driver","virtualbox","default"])
+        #docker-machine -s /dockermachine-vm create --driver virtualbox default
+        print "docker-machine","-s","/dockermachine-vm","create","--driver","virtualbox","default"
+        path = '/dockermachine-vm'
+        os.mkdir(path, 0777 )
+        output = subprocess.check_output(["docker-machine","-s", "/dockermachine-vm","create", "--driver","virtualbox","default"])
         print output
 #        s = subprocess.Popen("eval $(docker-machine env default)", stdout=subprocess.PIPE, shell=True)
     if lines == 1:
@@ -30,14 +33,11 @@ except:
     print "Ups!, algo fue mal. Contacte administrador"
 
 # Build docker image from Dockerfile
-path = './docker-build'
-#os.mkdir( path, 0755 )
-#os.chdir( path )
+os.chdir(/dockermachine-vm)
+os.system('git clone https://github.com/etsiiull/docker-phpmysqldev.git')
+os.chdir('/dockermachine-vm/docker-phpmysqldev')
+os.system('docker build . -t esit-php-mysql')
 
-
-#wget
-#git clone
-#docker build . -t esit-php-mysql
 #/home/ull.es/3b/pgonyan/.docker -- 1G!
 
 # Run docker image
@@ -46,4 +46,5 @@ print "docker run -ti --rm -p 9050:80 --name esit-php-mysql  esit-php-mysql"
 
 # Open web browser, terminal, mysql
 
+#echo Abra un navegador en http://`docker-machine ip`:91234
 #echo Abra un navegador en http://`docker-machine ip`:91234
