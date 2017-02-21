@@ -3,8 +3,7 @@ FROM ubuntu:16.04
 MAINTAINER Pedro Gonzalez "pgonyan@ull.edu.es"
 
 # Install.
-RUN apt-get update && \
-  apt-get -y upgrade
+RUN apt-get update
 
 RUN apt-get install -y \
     openssh-client \
@@ -41,9 +40,10 @@ RUN rm -f /etc/nginx/sites-available/defaul
 ADD conf/www.conf /etc/php/7.0/fpm/pool.d/www.conf
 ADD conf/php.ini /etc/php/7.0/fpm/php.ini
 
-
-ADD src/prueba.php  /var/www/html
-
+RUN mkdir /src
+ADD src/prueba.php  /src
+ADD src/prueba.sql /src
+ADD src/ejemplo2.php  /src
 # start
 COPY start.sh /bin
 RUN chmod a+x /bin/start.sh
