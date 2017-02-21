@@ -14,10 +14,10 @@ try:
     if lines == 0:
         print "Creando maquina virtual"
         #docker-machine -s /dockermachine-vm create --driver virtualbox default
-        print "docker-machine","-s","/dockermachine-vm","create","--driver","virtualbox","default"
+        print "docker-machine","-s","'/dockermachine-vm'","create","--driver","virtualbox","default"
         path = '/dockermachine-vm'
         os.mkdir(path, 0777 )
-        output = subprocess.check_output(["docker-machine","-s", "/dockermachine-vm","create", "--driver","virtualbox","default"])
+        output = subprocess.check_output(["docker-machine","-s", "'/dockermachine-vm'","create", "--driver","virtualbox","default"])
         print output
 #        s = subprocess.Popen("eval $(docker-machine env default)", stdout=subprocess.PIPE, shell=True)
     if lines == 1:
@@ -33,6 +33,7 @@ except:
     print "Ups!, algo fue mal. Contacte administrador"
 
 # Build docker image from Dockerfile
+os.system ('eval $(docker-machine env default)')
 os.chdir(/dockermachine-vm)
 os.system('git clone https://github.com/etsiiull/docker-phpmysqldev.git')
 os.chdir('/dockermachine-vm/docker-phpmysqldev')
