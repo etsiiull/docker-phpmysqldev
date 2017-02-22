@@ -15,6 +15,7 @@ RUN apt-get install -y \
     php \
     php-fpm \
     php-mysql \
+    net-tools \
     nginx
 
 # mysql
