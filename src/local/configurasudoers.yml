@@ -1,0 +1,15 @@
+
+
+tasks:
+  - name: Configura fichero sudoers, permitir ejecutrr docker-esit
+    - lineinfile:
+      path: /etc/sudoers
+      line: 'ALL ALL =/usr/local/bin/docker-esit'
+
+  - name: Copia fichero docker-esit
+    - copy:
+        src: docker-esit
+        dest: /usr/local/bin/docker-esit
+        owner: root
+        group: root
+        mode: "a+x,a-w"
