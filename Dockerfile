@@ -22,8 +22,8 @@ RUN apt-get install -y \
 RUN echo  'mysql-server mysql-server/root_password password P1ngP4ng' | debconf-set-selections
 RUN echo 'mysql-server mysql-server/root_password_again password P1ngP4ng' | debconf-set-selections
 RUN apt-get update
-RUN apt-get -y install mysql-server
-
+RUN apt-get -y install mysql-server \
+  tmux
 
 # nginx
 RUN rm -Rf /etc/nginx/nginx.conf
