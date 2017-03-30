@@ -49,5 +49,5 @@ ADD src/ejemplo2.php  /src
 COPY start.sh /bin
 RUN chmod a+x /bin/start.sh
 
-EXPOSE 80 443
+EXPOSE 80 443 3306
 CMD ["/bin/start.sh"]
