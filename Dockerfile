@@ -24,10 +24,10 @@ RUN echo 'mysql-server mysql-server/root_password_again password P1ngP4ng' | deb
 RUN apt-get update
 RUN apt-get -y install mysql-server \
   tmux
-
+ADD conf/mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
 # nginx
 RUN rm -Rf /etc/nginx/nginx.conf
-ADD conf/nginx.conf /etc/nginx/nginx.conf
+ADD  conf/nginx.conf /etc/nginx/nginx.conf
 
 RUN mkdir -p /etc/nginx/sites-available/ && \
 mkdir -p /etc/nginx/sites-enabled/ && \
