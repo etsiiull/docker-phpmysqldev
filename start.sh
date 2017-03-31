@@ -10,4 +10,6 @@ cp /src/ejemplo2.php /var/www/html/ejemplo2.php
 
 mysql -pP1ngP4ng -u root < /src/prueba.sql
 
+echo " GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'P1ngP4ng' WITH GRANT OPTION; FLUSH PRIVILEGES" | mysql -pP1ngP4ng -u root 
+
 /bin/bash
